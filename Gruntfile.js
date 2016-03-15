@@ -1,4 +1,4 @@
-// Generated on 2016-03-14 using generator-angular-fullstack 3.4.2
+// Generated on 2016-03-15 using generator-angular-fullstack 3.4.2
 'use strict';
 
 module.exports = function (grunt) {
@@ -83,6 +83,14 @@ module.exports = function (grunt) {
       jsTest: {
         files: ['<%= yeoman.client %>/{app,components}/**/*.{spec,mock}.js'],
         tasks: ['newer:jshint:all', 'wiredep:test', 'karma']
+      },
+      injectSass: {
+        files: ['<%= yeoman.client %>/{app,components}/**/*.{scss,sass}'],
+        tasks: ['injector:sass']
+      },
+      sass: {
+        files: ['<%= yeoman.client %>/{app,components}/**/*.{scss,sass}'],
+        tasks: ['sass', 'postcss']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -221,7 +229,11 @@ module.exports = function (grunt) {
         exclude: [
           /bootstrap.js/,
           '/json3/',
-          '/es5-shim/'
+          '/es5-shim/',
+          /font-awesome\.css/,
+          /bootstrap\.css/,
+          /bootstrap-sass-official/,
+          /bootstrap-social\.css/
         ]
       },
       client: {
@@ -419,13 +431,16 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       pre: [
+        'injector:sass',
         'ngconstant'
       ],
       server: [
         'newer:babel:client',
+        'sass',
       ],
       test: [
         'newer:babel:client',
+        'sass',
       ],
       debug: {
         tasks: [
@@ -438,6 +453,7 @@ module.exports = function (grunt) {
       },
       dist: [
         'newer:babel:client',
+        'sass',
         'imagemin'
       ]
     },
@@ -556,6 +572,18 @@ module.exports = function (grunt) {
       }
     },
 
+    // Compiles Sass to CSS
+    sass: {
+      server: {
+        options: {
+          compass: false
+        },
+        files: {
+          '.tmp/app/app.css' : '<%= yeoman.client %>/app/app.scss'
+        }
+      }
+    },
+
     injector: {
       options: {},
       // Inject application script files into index.html (doesn't include bower)
@@ -584,6 +612,26 @@ module.exports = function (grunt) {
                  '!{.tmp,<%= yeoman.client %>}/app/app.{js,ts}'
                ]
             ]
+        }
+      },
+
+      // Inject component scss into app.scss
+      sass: {
+        options: {
+          transform: function(filePath) {
+            var yoClient = grunt.config.get('yeoman.client');
+            filePath = filePath.replace('/' + yoClient + '/app/', '');
+            filePath = filePath.replace('/' + yoClient + '/components/', '../components/');
+            return '@import \'' + filePath + '\';';
+          },
+          starttag: '// injector',
+          endtag: '// endinjector'
+        },
+        files: {
+          '<%= yeoman.client %>/app/app.scss': [
+            '<%= yeoman.client %>/{app,components}/**/*.{scss,sass}',
+            '!<%= yeoman.client %>/app/app.{scss,sass}'
+          ]
         }
       },
 

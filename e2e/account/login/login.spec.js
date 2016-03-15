@@ -41,8 +41,6 @@ describe('Login View', function() {
   });
 
   it('should include oauth buttons with correct classes applied', function() {
-    expect(page.form.oauthButtons.facebook.getText()).to.eventually.equal('Connect with Facebook');
-    expect(page.form.oauthButtons.facebook.getAttribute('class')).to.eventually.contain('btn-block');
     expect(page.form.oauthButtons.google.getText()).to.eventually.equal('Connect with Google+');
     expect(page.form.oauthButtons.google.getAttribute('class')).to.eventually.contain('btn-block');
   });

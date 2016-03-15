@@ -17,7 +17,7 @@
       "js": true,
       "babel": true,
       "html": true,
-      "css": true,
+      "sass": true,
       "uirouter": true,
       "bootstrap": true,
       "uibootstrap": true,
@@ -27,7 +27,6 @@
       "mongoose": true,
       "oauth": true,
       "googleAuth": true,
-      "facebookAuth": true,
       "grunt": true,
       "mocha": true,
       "jasmine": false,
@@ -55,7 +54,7 @@
       "babel",
       "js",
       "html",
-      "css"
+      "scss"
     ],
     "directiveSimpleTemplates": "",
     "directiveComplexTemplates": "",
