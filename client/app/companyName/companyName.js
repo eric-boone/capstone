@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('companyName')
+angular.module('baconApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('companyName', {

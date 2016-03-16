@@ -3,7 +3,7 @@
 describe('Component: CompanyNameComponent', function () {
 
   // load the controller's module
-  beforeEach(module('companyName'));
+  beforeEach(module('baconApp'));
 
   var CompanyNameComponent, scope;
 
