@@ -1,16 +1,16 @@
 'use strict';
 
-describe('Component: CompanyNameComponent', function () {
+describe('Component: CreateJobComponent', function () {
 
   // load the controller's module
   beforeEach(module('baconApp'));
 
-  var CompanyNameComponent, scope;
+  var CreateJobComponent, scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($componentController, $rootScope) {
     scope = $rootScope.$new();
-    CompanyNameComponent = $componentController('CompanyNameComponent', {
+    CreateJobComponent = $componentController('CreateJobComponent', {
       $scope: scope
     });
   }));

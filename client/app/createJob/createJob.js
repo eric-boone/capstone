@@ -3,8 +3,8 @@
 angular.module('baconApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('companyName', {
-        url: '/companyName',
-        template: '<company-name></company-name>'
+      .state('createJob', {
+        url: '/createJob',
+        template: '<create-job></create-job>'
       });
   });

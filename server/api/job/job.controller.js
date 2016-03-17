@@ -1,16 +1,16 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
- * GET     /api/companyNames              ->  index
- * POST    /api/companyNames              ->  create
- * GET     /api/companyNames/:id          ->  show
- * PUT     /api/companyNames/:id          ->  update
- * DELETE  /api/companyNames/:id          ->  destroy
+ * GET     /api/jobs              ->  index
+ * POST    /api/jobs              ->  create
+ * GET     /api/jobs/:id          ->  show
+ * PUT     /api/jobs/:id          ->  update
+ * DELETE  /api/jobs/:id          ->  destroy
  */
 
 'use strict';
 
 import _ from 'lodash';
-import CompanyName from './companyName.model';
+import Job from './job.model';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -59,43 +59,43 @@ function handleError(res, statusCode) {
   };
 }
 
-// Gets a list of CompanyNames
+// Gets a list of Jobs
 export function index(req, res) {
-  return CompanyName.find().exec()
+  return Job.find().exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Gets a single CompanyName from the DB
+// Gets a single Job from the DB
 export function show(req, res) {
-  return CompanyName.findById(req.params.id).exec()
+  return Job.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Creates a new CompanyName in the DB
+// Creates a new Job in the DB
 export function create(req, res) {
-  return CompanyName.create(req.body)
+  return Job.create(req.body)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
 }
 
-// Updates an existing CompanyName in the DB
+// Updates an existing Job in the DB
 export function update(req, res) {
   if (req.body._id) {
     delete req.body._id;
   }
-  return CompanyName.findById(req.params.id).exec()
+  return Job.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(saveUpdates(req.body))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Deletes a CompanyName from the DB
+// Deletes a Job from the DB
 export function destroy(req, res) {
-  return CompanyName.findById(req.params.id).exec()
+  return Job.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(removeEntity(res))
     .catch(handleError(res));
