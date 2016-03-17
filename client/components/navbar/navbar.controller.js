@@ -6,8 +6,8 @@ class NavbarController {
     'title': 'Home',
     'state': 'main'
   }, {
-    'title': 'Company',
-    'state': 'companyName'
+    'title': 'Add Job',
+    'state': 'createJob'
   }];
 
   isCollapsed = true;

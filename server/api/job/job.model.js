@@ -17,7 +17,7 @@ var JobSchema = new mongoose.Schema({
     trim: true,
     required: 'Title cannot be blank'
   },
-  job_discription: {
+  job_description: {
     type: String,
     default: '',
     trim: true
@@ -61,10 +61,6 @@ var JobSchema = new mongoose.Schema({
     type: String,
     default: '',
     trim: true
-  },
-  user: {
-    type: Schema.ObjectId,
-    ref: 'User'
   }
 
 });
